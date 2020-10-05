@@ -93,3 +93,69 @@ Tue 18/08/20 09:29:06 PM
 >> Location: -
 >> Video Length: 60.745999999999995
 >> Time Taken: 17.029907941818237
+
+Tue 18/08/20 11:18:09 PM
+>> File: WhatsApp Video 2020-08-18 at 7.46.01 PM (1).mp4
+>> Location: ./JoJofication/jojofied_WhatsApp Video 2020-08-18 at 7.46.01 PM (1).mp4
+>> Video Length: 60.766
+>> Time Taken: 13.192646980285645
+
+Tue 18/08/20 11:26:04 PM
+>> File: WhatsApp Video 2020-08-18 at 7.46.01 PM (1).mp4
+>> Location: ./JoJofication/jojofied_WhatsApp Video 2020-08-18 at 7.46.01 PM (1).mp4
+>> Video Length: 60.766
+>> Time Taken: 431.4291191101074
+
+Thu 20/08/20 10:31:22 AM
+>> File: hfJQtTq_Trim.mp4
+>> Location: ./JoJofication/jojofied_hfJQtTq_Trim.mp4
+>> Video Length: 24.885999999999996
+>> Time Taken: 15.07715368270874
+
+Thu 20/08/20 10:37:27 AM
+>> File: spooderkid_Trim.mp4
+>> Location: ./JoJofication/jojofied_spooderkid_Trim.mp4
+>> Video Length: 23.025999999999996
+>> Time Taken: 10.860595226287842
+
+Thu 20/08/20 10:47:40 AM
+>> File: spooderkid_Trim.mp4
+>> Location: ./JoJofication/jojofied_spooderkid_Trim.mp4
+>> Video Length: 23.025999999999996
+>> Time Taken: 4.615649223327637
+
+Thu 20/08/20 10:56:27 AM
+>> File: hfJQtTq_Trim.mp4
+>> Location: ./JoJofication/jojofied_hfJQtTq_Trim.mp4
+>> Video Length: 24.885999999999996
+>> Time Taken: 8.317758560180664
+
+Thu 20/08/20 11:31:06 AM
+>> File: shimmy_Trim.mp4
+>> Location: ./JoJofication/jojofied_shimmy_Trim.mp4
+>> Video Length: 20.525999999999996
+>> Time Taken: 5.156182765960693
+
+Thu 20/08/20 11:34:22 AM
+>> File: shimmy_Trim.mp4
+>> Location: ./JoJofication/jojofied_shimmy_Trim.mp4
+>> Video Length: 20.086
+>> Time Taken: 5.127271413803101
+
+Thu 20/08/20 11:34:33 AM
+>> File: shimmy_Trim2.mp4
+>> Location: ./JoJofication/jojofied_shimmy_Trim2.mp4
+>> Video Length: 20.186
+>> Time Taken: 5.137262582778931
+
+Thu 20/08/20 11:36:06 AM
+>> File: shimmy_Trim.mp4
+>> Location: ./JoJofication/jojofied_shimmy_Trim.mp4
+>> Video Length: 20.086
+>> Time Taken: 5.420506954193115
+
+Wed 26/08/20 12:19:01 PM
+>> File: jojophone2.mp4
+>> Location: ./JoJofication/jojofied_jojophone2.mp4
+>> Video Length: 87.196
+>> Time Taken: 46.28219532966614
