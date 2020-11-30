@@ -159,3 +159,9 @@ Wed 26/08/20 12:19:01 PM
 >> Location: ./JoJofication/jojofied_jojophone2.mp4
 >> Video Length: 87.196
 >> Time Taken: 46.28219532966614
+
+Sun 29/11/20 12:56:24 PM
+>> File: Big 3 Groovin.mp4
+>> Location: ./JoJofication/jojofied_Big 3 Groovin.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 6.155101776123047
