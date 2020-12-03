@@ -171,3 +171,9 @@ Thu 03/12/20 02:49:45 PM
 >> Location: ./JoJofication/jojofied_shimmy_Trim.mp4
 >> Video Length: 20.086
 >> Time Taken: 4.735534429550171
+
+Thu 03/12/20 03:48:35 PM
+>> File: Cilvanis One Piece Eyecatcher.mp4
+>> Location: ./JoJofication/jojofied_Cilvanis One Piece Eyecatcher.mp4
+>> Video Length: 18.715999999999998
+>> Time Taken: 10.628936529159546
