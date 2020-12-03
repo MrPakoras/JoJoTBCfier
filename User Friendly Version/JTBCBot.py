@@ -15,35 +15,30 @@ flist = []
 rootDir = './videos'
 nth = 1
 for dirName, subdirList, fileList in os.walk(rootDir):
-    for fname in fileList:
-        print('>> '+str(nth)+' - '+fname)
-        flist.append(fname)
-        nth += 1
+	for fname in fileList:
+		try:
+			if mimetypes.guess_type(f'./videos/{fname}')[0].startswith('video'):
+				print('>> '+str(nth)+' - '+fname)
+				flist.append(fname)
+				nth += 1
+			else:
+				pass
+		except AttributeError:
+			pass
 
 if nth == 1:
-    print('>> Error: There are no files. Place your videos in the "videos" folder!',end='')
-    input()
-    quit()
+	print('>> Error: There are no files. Place your videos in the "videos" folder!',end='')
+	input()
+	quit()
 
 while True:
-    fileinp = input("\n>> Enter number of video clip you'd like to edit:   ")
+	fileinp = input("\n>> Enter number of video clip you'd like to edit:   ")
 
-    if re.match(r'^[0-9]+$',fileinp):
-        try:
-            file = flist[(int(fileinp)-1)]
-        except IndexError:
-            print('>> Error 404. Please try again.')
-            pass
-        print(file)
-        
-        if mimetypes.guess_type('./videos/'+file)[0].startswith('video'):
-            break
-
-        else:
-            print('>> Error. File must be a video!')
-
-    else:
-        print('>> Error 404. Please try again.')
+	try:
+		file = flist[(int(fileinp)-1)]
+		break
+	except IndexError:
+		print('>> Error 404. Please try again.')
 
 print('>> File "'+file+'" chosen.')
 
@@ -69,9 +64,9 @@ audioclip = audioclip.set_start(t=start_song)  # Time at which song should start
 #v = v.set_audio('')
 
 try:
-    fa = mp.CompositeAudioClip([audioclip, v.audio]) # If video contains audio, merge with song
+	fa = mp.CompositeAudioClip([audioclip, v.audio]) # If video contains audio, merge with song
 except AttributeError:
-    fa = mp.CompositeAudioClip([audioclip]) # Else just add audio
+	fa = mp.CompositeAudioClip([audioclip]) # Else just add audio
 
 
 # ~ Video Freeze Frame ~
