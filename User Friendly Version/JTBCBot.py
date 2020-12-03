@@ -2,8 +2,7 @@
 # ~ v1.5 - Resizing TBC Arrow ~
 # ~ v1.55 - Cleaning up code ~
 
-import moviepy, os, time, re
-from pymediainfo import MediaInfo
+import moviepy, os, time, re, mimetypes
 import moviepy.editor as mp
 import moviepy.video.fx.all as vfx
 from PIL import Image, ImageOps
@@ -27,25 +26,24 @@ if nth == 1:
     quit()
 
 while True:
-    fileinp = int(input(">> Enter number of video clip you'd like to edit:   "))
-
-    try:
-        file = flist[(fileinp-1)]
-    except IndexError:
-        print('>> Error 404. Please try again.\n')
-        pass
+    fileinp = input("\n>> Enter number of video clip you'd like to edit:   ")
 
     if re.match(r'^[0-9]+$',fileinp):
-        if len(flist)+1 > fileinp > 0:
-            fileInfo = MediaInfo.parse(file)
-            for track in fileInfo.tracks:
-                if track.track_type == "Video":
-                    break
-                else:
-                    print('>> Error. File must be a video!')
+        try:
+            file = flist[(int(fileinp)-1)]
+        except IndexError:
+            print('>> Error 404. Please try again.')
+            pass
+        print(file)
+        
+        if mimetypes.guess_type('./videos/'+file)[0].startswith('video'):
+            break
+
+        else:
+            print('>> Error. File must be a video!')
 
     else:
-        print('>> Error 404. Please try again.\n')
+        print('>> Error 404. Please try again.')
 
 print('>> File "'+file+'" chosen.')
 

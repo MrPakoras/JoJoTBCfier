@@ -165,3 +165,9 @@ Sun 29/11/20 12:56:24 PM
 >> Location: ./JoJofication/jojofied_Big 3 Groovin.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 6.155101776123047
+
+Thu 03/12/20 02:49:45 PM
+>> File: shimmy_Trim.mp4
+>> Location: ./JoJofication/jojofied_shimmy_Trim.mp4
+>> Video Length: 20.086
+>> Time Taken: 4.735534429550171
