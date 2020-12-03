@@ -165,3 +165,9 @@ Sun 29/11/20 12:56:24 PM
 >> Location: ./JoJofication/jojofied_Big 3 Groovin.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 6.155101776123047
+
+Thu 03/12/20 12:10:04 PM
+>> File: kibido993 wait.mp4
+>> Location: ./JoJofication/jojofied_kibido993 wait.mp4
+>> Video Length: 23.535999999999998
+>> Time Taken: 27.63980269432068
