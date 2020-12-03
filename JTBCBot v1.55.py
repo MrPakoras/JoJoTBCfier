@@ -92,5 +92,5 @@ now = datetime.now()
 dt = now.strftime('%a %d/%m/%y %I:%M:%S %p')
 
 lf = open('log.txt','a+')
-lf.write('\n\n'+dt+'\n>> File: '+file+'\n>> Location: ./JoJofication/jojofied_'+file+'\n>> Video Length: '+str(fva.duration)+'\n>> Time Taken: '+str(time.time()-start_time))
+lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: ./JoJofication/jojofied_{file}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
 lf.close()

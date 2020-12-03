@@ -3,6 +3,7 @@
 # ~ v1.55 - Cleaning up code ~
 
 import moviepy, os, time, re
+from pymediainfo import MediaInfo
 import moviepy.editor as mp
 import moviepy.video.fx.all as vfx
 from PIL import Image, ImageOps
@@ -26,12 +27,25 @@ if nth == 1:
     quit()
 
 while True:
-    fileinp = int(input("Enter number of video clip you'd like to edit:   "))
+    fileinp = int(input(">> Enter number of video clip you'd like to edit:   "))
+
     try:
         file = flist[(fileinp-1)]
-        break
     except IndexError:
-        print('Error 404. Please try again.\n')
+        print('>> Error 404. Please try again.\n')
+        pass
+
+    if re.match(r'^[0-9]+$',fileinp):
+        if len(flist)+1 > fileinp > 0:
+            fileInfo = MediaInfo.parse(file)
+            for track in fileInfo.tracks:
+                if track.track_type == "Video":
+                    break
+                else:
+                    print('>> Error. File must be a video!')
+
+    else:
+        print('>> Error 404. Please try again.\n')
 
 print('>> File "'+file+'" chosen.')
 
@@ -97,5 +111,5 @@ now = datetime.now()
 dt = now.strftime('%a %d/%m/%y %I:%M:%S %p')
 
 lf = open('log.txt','a+')
-lf.write('\n\n'+dt+'\n>> File: '+file+'\n>> Location: ./JoJofication/jojofied_'+file+'\n>> Video Length: '+str(fva.duration)+'\n>> Time Taken: '+str(time.time()-start_time))
+lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: ./JoJofication/jojofied_{file}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
 lf.close()
