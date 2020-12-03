@@ -20,13 +20,18 @@ for dirName, subdirList, fileList in os.walk(rootDir):
         flist.append(fname)
         nth += 1
 
+if nth == 1:
+    print('>> Error: There are no files. Place your videos in the "videos" folder!',end='')
+    input()
+    quit()
+
 while True:
     fileinp = int(input("Enter number of video clip you'd like to edit:   "))
     try:
         file = flist[(fileinp-1)]
         break
     except IndexError:
-        print('Error 404. Please try again.')
+        print('Error 404. Please try again.\n')
 
 print('>> File "'+file+'" chosen.')
 
