@@ -35,3 +35,9 @@ Sat 05/12/20 11:15:15 AM
 >> Location: ./JoJofication/jojofied_jojofied_elbow.mp4
 >> Video Length: 30.045999999999996
 >> Time Taken: 13.464375257492065
+
+Sat 05/12/20 10:41:16 PM
+>> File: Big 3 Groovin.mp4
+>> Location: ./JoJofication/jojofied_Big 3 Groovin.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 5.432610988616943

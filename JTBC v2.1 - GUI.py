@@ -7,6 +7,8 @@ from PIL import Image, ImageOps
 from datetime import datetime
 from moviepy.editor import ImageClip
 
+print('>> Running...')
+
 master = Tk()
 master.iconbitmap('tbcarrowicon.ico')
 master.title('JoJoTBCfier v2.0 GUI')
@@ -134,7 +136,7 @@ def start():
 	dt = now.strftime('%a %d/%m/%y %I:%M:%S %p')
 
 	lf = open('log.txt','a+')
-	fpath = f'./JoJofication/jojofied_{file}'
+	fpath = f'./jojofied/jojofied_{file}'
 	lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: {fpath}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
 	lf.close()
 
