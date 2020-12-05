@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-import moviepy, os, time, re
+import moviepy, os, time, re, mimetypes
 import moviepy.editor as mp
 import moviepy.video.fx.all as vfx
 from PIL import Image, ImageOps
@@ -24,15 +24,23 @@ def browse():
 														"*.txt*"), 
 													   ("all files", 
 														"*.*")))
-
-	if len(filename) > 55:
-		avar = filename[:55]+'...'
-	else:
-		avar = filename
-
 	if len(filename) != 0:
-		addrvar.set(avar)
+		if len(filename) >= 55:
+			avar = filename[:55]+'...'
+		else:
+			avar = filename
+	addrvar.set(avar)
+
+	if mimetypes.guess_type(filename)[0].startswith('video'):
+		mvar = ':)'
+		messvar.set(mvar)
 		startbutton.config(state='normal')
+
+	else:
+		startbutton.config(state='disabled')
+		mvar = 'Error. Please choose a video file.'
+		messvar.set(mvar)
+
 
 ## Start program button
 def start():
