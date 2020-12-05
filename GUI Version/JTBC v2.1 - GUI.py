@@ -8,6 +8,7 @@ from datetime import datetime
 from moviepy.editor import ImageClip
 
 master = Tk()
+master.iconbitmap('tbcarrowicon.ico')
 master.title('JoJoTBCfier v2.0 GUI')
 master.geometry('400x225')
 master.resizable(False, False)
