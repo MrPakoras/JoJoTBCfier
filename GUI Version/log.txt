@@ -23,3 +23,15 @@ Sat 05/12/20 10:23:13 AM
 >> Location: ./JoJofication/jojofied_Beef Stew - Hardstop Lucas.mp4
 >> Video Length: 31.345999999999997
 >> Time Taken: 16.53666877746582
+
+Sat 05/12/20 11:12:35 AM
+>> File: Tophonee Thooming 1.mp4
+>> Location: ./JoJofication/jojofied_Tophonee Thooming 1.mp4
+>> Video Length: 49.906
+>> Time Taken: 28.58840775489807
+
+Sat 05/12/20 11:15:15 AM
+>> File: jojofied_elbow.mp4
+>> Location: ./JoJofication/jojofied_jojofied_elbow.mp4
+>> Video Length: 30.045999999999996
+>> Time Taken: 13.464375257492065

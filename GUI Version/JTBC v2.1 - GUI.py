@@ -18,28 +18,24 @@ setb.place(x=0, y=0, relwidth=1, relheight=1)
 ## Browse for file function
 def browse():
 	global filename
-	filename = filedialog.askopenfilename(initialdir = "/", 
-										  title = "Select a File", 
-										  filetypes = (("Text files", 
-														"*.txt*"), 
-													   ("all files", 
-														"*.*")))
+	filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File")
+
 	if len(filename) != 0:
 		if len(filename) >= 55:
 			avar = filename[:55]+'...'
 		else:
 			avar = filename
-	addrvar.set(avar)
+		addrvar.set(avar)
 
-	if mimetypes.guess_type(filename)[0].startswith('video'):
-		mvar = ':)'
-		messvar.set(mvar)
-		startbutton.config(state='normal')
+		if mimetypes.guess_type(filename)[0].startswith('video'):
+			mvar = ':)'
+			messvar.set(mvar)
+			startbutton.config(state='normal')
 
-	else:
-		startbutton.config(state='disabled')
-		mvar = 'Error. Please choose a video file.'
-		messvar.set(mvar)
+		else:
+			startbutton.config(state='disabled')
+			mvar = 'Error. Please choose a video file.'
+			messvar.set(mvar)
 
 
 ## Start program button
@@ -137,18 +133,22 @@ def start():
 	dt = now.strftime('%a %d/%m/%y %I:%M:%S %p')
 
 	lf = open('log.txt','a+')
-	lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: ./JoJofication/jojofied_{file}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
+	fpath = f'./JoJofication/jojofied_{file}'
+	lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: {fpath}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
 	lf.close()
 
-	mvar = 'Done.'
+	if len({fpath}) >= 55:
+		mvar = f'Done. Video output at {fpath[:55]}...'
+	else:
+		mvar = f'Done. Video output at {fpath}'
 	messvar.set(mvar)
 
 
 	# ~ Resetting GUI ~
 	startbutton.config(state='disabled')
 	browsebutton.config(state='normal')
-	mvar = ''
-	messvar.set(mvar)
+	#mvar = ''
+	#messvar.set(mvar)
 
 
 
