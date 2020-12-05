@@ -40,7 +40,7 @@ final = v.duration-0.1 # Removes 0.1s from end of clip so that freeze frame does
 
 
 # ~ Roundabout song ~
-song = './songs/roundabout_long.mp3'
+song = 'roundabout.mp3'
 riff_time = 44.944
 
 start_song = final-riff_time
