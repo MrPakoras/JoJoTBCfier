@@ -41,3 +41,27 @@ Sat 05/12/20 10:41:16 PM
 >> Location: ./JoJofication/jojofied_Big 3 Groovin.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 5.432610988616943
+
+Sun 06/12/20 08:44:19 AM
+>> File: ripsave - Press F to pay respec... holup.mp4
+>> Location: ./jojofied/jojofied_ripsave - Press F to pay respec... holup.mp4
+>> Video Length: 36.296
+>> Time Taken: 2.760368585586548
+
+Sun 06/12/20 09:09:11 AM
+>> File: Big 3 Groovin.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 4.922696590423584
+
+Sun 06/12/20 09:10:23 AM
+>> File: Big 3 Groovin.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 5.043901681900024
+
+Sun 06/12/20 09:11:54 AM
+>> File: Beef Stew - Hardstop Lucas.mp4
+>> Location: ./jojofied/jojofied_Beef Stew - Hardstop Lucas.mp4
+>> Video Length: 31.345999999999997
+>> Time Taken: 16.07461643218994
