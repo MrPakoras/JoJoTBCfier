@@ -103,8 +103,20 @@ def start():
 	tinted = ImageOps.colorize(tg, black='#1e1a12', white='#bfb196') # Tinting sepia tones
 	tinted.save('thumbnail.jpg')
 
-	finalfr = mp.ImageClip('thumbnail.jpg', duration=(audioclip.duration-riff_time)).set_start(final) # Open tinted frame as freeze frame
-	
+	#finalfr = mp.ImageClip('thumbnail.jpg', duration=(audioclip.duration-riff_time)).set_start(final) # Open tinted frame as freeze frame
+	finalfr = mp.ImageClip('thumbnail.jpg', ismask=True, duration=(audioclip.duration-riff_time)).set_start(final) # Open tinted frame as freeze frame
+	finalfr.mask.ismask()
+
+	def fade(clip, duration):
+		maskval = 0
+		for loop in range(duration):
+			maskval += 0.1 # Fades from 0 to 1 in duration specified
+			clip.set_mask(maskval)
+			return clip
+
+	#fadein = mp.CompositeVideoClip([v, finalfr.fadein(0.5)])
+	fadein = mp.CompositeVideoClip([v, fade(finalfr, 1)])
+
 	# TBC arrow slide in	
 	mvar = 'Adding To Be Continued arrow...'
 	messvar.set(mvar)
@@ -116,11 +128,22 @@ def start():
 	tbcarrow = tbcarrow.resize(width=(vidwid*0.4)) # Resizing arrow to 40% of video width
 
 
+
+	# # ~ Converting to .mp4 ~
+	# mvar = 'Converting to .mp4...'
+	# messvar.set(mvar)
+
+	# extindex = file.rfind('.') # finding final . for extension
+	# file = f'{file[0:extindex]}{time.strftime("_%d-%m-%y_%H-%M-%S")}.mp4' # replacing extension with .mp4
+
+
+
 	#  ~ Exporting video ~
 	mvar = 'Exporting video...'
 	messvar.set(mvar)
 
-	fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+	#fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+	fv = mp.CompositeVideoClip([fadein, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
 	fva = fv.set_audio(fa).set_end(fv.duration-0.1)
 	fva = fva.set_fps(fps=30)
 
