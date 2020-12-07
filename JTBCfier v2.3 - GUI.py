@@ -24,8 +24,8 @@ def browse():
 	filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File")
 
 	if len(filename) != 0:
-		if len(filename) >= 55:
-			avar = filename[:55]+'...'
+		if len(filename) >= 45:
+			avar = filename[:45]+'...'
 		else:
 			avar = filename
 		addrvar.set(avar)
@@ -117,12 +117,12 @@ def start():
 
 
 
-	# ~ Converting to .mp4 ~
-	mvar = 'Converting to .mp4...'
-	messvar.set(mvar)
+	# # ~ Converting to .mp4 ~
+	# mvar = 'Converting to .mp4...'
+	# messvar.set(mvar)
 
-	extindex = file.rfind('.') # finding final . for extension
-	file = f'{file[0:extindex]}{time.strftime("_%d-%m-%y_%H-%M-%S")}.mp4' # replacing extension with .mp4
+	# extindex = file.rfind('.') # finding final . for extension
+	# file = f'{file[0:extindex]}{time.strftime("_%d-%m-%y_%H-%M-%S")}.mp4' # replacing extension with .mp4
 
 
 
@@ -133,6 +133,10 @@ def start():
 	fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
 	fva = fv.set_audio(fa).set_end(fv.duration-0.1)
 	fva = fva.set_fps(fps=30)
+
+	extindex = file.rfind('.') # finding final . for extension	
+	dt = time.strftime('%d-%m-%y_%H-%M-%S')
+	file = f'{file[0:extindex]}_{dt}.mp4' # replacing extension with .mp4
 	fva.write_videofile(f'./jojofied/jojofied_{file}')
 
 
@@ -140,8 +144,6 @@ def start():
 	mvar = 'Writing log file...'
 	messvar.set(mvar)
 	
-	now = datetime.now()
-	dt = now.strftime('%a %d/%m/%y %I:%M:%S %p')
 
 	lf = open('log.txt','a+')
 	fpath = f'./jojofied/jojofied_{file}'
@@ -149,7 +151,7 @@ def start():
 	lf.close()
 
 	if len({fpath}) >= 45:
-		mvar = f'Done. Video output at {fpath[:55]}...'
+		mvar = f'Done. Video output at {fpath[:35]}...'
 	else:
 		mvar = f'Done. Video output at {fpath}'
 	messvar.set(mvar)

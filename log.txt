@@ -107,3 +107,15 @@ Mon 07/12/20 09:31:35 AM
 >> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_09-31-31.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 4.791334867477417
+
+07-12-20_10-25-15
+>> File: Big 3 Groovin_07-12-20_10-25-15.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_10-25-15.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 4.784519910812378
+
+07-12-20_10-27-40
+>> File: Big 3 Groovin_07-12-20_10-27-40.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_10-27-40.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 4.802468299865723
