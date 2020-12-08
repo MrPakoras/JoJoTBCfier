@@ -1,4 +1,4 @@
-# v2.3 - Added date time to file name, fade final frame into sepia freeze frame
+# v2.3 - Working on fade final frame into sepia freeze frame
 
 from tkinter import *
 from tkinter import filedialog
@@ -103,19 +103,37 @@ def start():
 	tinted = ImageOps.colorize(tg, black='#1e1a12', white='#bfb196') # Tinting sepia tones
 	tinted.save('thumbnail.jpg')
 
-	#finalfr = mp.ImageClip('thumbnail.jpg', duration=(audioclip.duration-riff_time)).set_start(final) # Open tinted frame as freeze frame
-	finalfr = mp.ImageClip('thumbnail.jpg', ismask=True, duration=(audioclip.duration-riff_time)).set_start(final) # Open tinted frame as freeze frame
-	finalfr.mask.ismask()
+	finalfr = mp.ImageClip('thumbnail.jpg')
+	# finalfr = mp.ImageClip('thumbnail.jpg', duration=(audioclip.duration-riff_time)) # Open tinted frame as freeze frame
+	# finalfr.set_start(final) 
 
-	def fade(clip, duration):
-		maskval = 0
-		for loop in range(duration):
-			maskval += 0.1 # Fades from 0 to 1 in duration specified
-			clip.set_mask(maskval)
-			return clip
+	#ffmask = mp.ImageClip('thumbnail.jpg', ismask=True)#, duration=(audioclip.duration-riff_time)).set_start(final) # Final frame mask
+	#finalfr.set_mask(ffmask)
+
+	# def fade(clip, duration):
+	# 	maskval = 0
+	# 	for loop in range(duration*10):
+	# 		maskval += 0.1/duration # Fades from 0 to 1 in duration specified
+	# 		mask = clip.to_mask(maskval)
+	# 		clip.set_mask(mask)
+	# 		return clip
+
+	def fadein(clip, duration):
+		o = 0 # opacity
+		tpos = 0 # time position for clip to be placed at
+		fn = duration*30 # Number of frames @ 30fps
+
+		for loop in range(fn):
+			clip.set_opacity(o)
+			o += 1/fn
+			tpos += 1/30
+
+			return clip.set_start(final+tpos)
+
+
 
 	#fadein = mp.CompositeVideoClip([v, finalfr.fadein(0.5)])
-	fadein = mp.CompositeVideoClip([v, fade(finalfr, 1)])
+	#fadein = mp.CompositeVideoClip([finalfr, fade(finalfr, 1)])
 
 	# TBC arrow slide in	
 	mvar = 'Adding To Be Continued arrow...'
@@ -143,7 +161,15 @@ def start():
 	messvar.set(mvar)
 
 	#fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
-	fv = mp.CompositeVideoClip([fadein, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+	fadedur = 1
+	fadev = mp.CompositeVideoClip([v, fadein(finalfr, fadedur), tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+
+	freezefr = mp.ImageClip('thumbnail.jpg', duration=(audioclip.duration-riff_time-fadedur)).set_start(final+fadedur) # Open tinted frame as freeze frame
+	fv = mp.CompositeVideoClip([fadev, tbcarrow.set_pos(('left','bottom')).set_start(final+fadedur).set_duration(audioclip.duration-riff_time-fadedur)])
+
+	# Add freeze frame after fade clip has reached max opacity...
+
+
 	fva = fv.set_audio(fa).set_end(fv.duration-0.1)
 	fva = fva.set_fps(fps=30)
 

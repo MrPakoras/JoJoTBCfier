@@ -149,3 +149,39 @@ Mon 07/12/20 09:31:35 AM
 >> Location: jojofied/jojofied_Big 3 Groovin_07-12-20_20-00-49.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 4.912408828735352
+
+07-12-20_20-59-06
+>> File: Big 3 Groovin_07-12-20_20-59-06.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_20-59-06.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 17.18808627128601
+
+07-12-20_21-01-45
+>> File: Big 3 Groovin_07-12-20_21-01-45.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_21-01-45.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 15.144980430603027
+
+07-12-20_21-17-01
+>> File: Big 3 Groovin_07-12-20_21-17-01.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_21-17-01.mp4
+>> Video Length: 17.005999999999997
+>> Time Taken: 13.98821210861206
+
+07-12-20_21-18-55
+>> File: Big 3 Groovin_07-12-20_21-18-55.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_21-18-55.mp4
+>> Video Length: 17.03933333333333
+>> Time Taken: 4.880252361297607
+
+07-12-20_21-20-36
+>> File: Big 3 Groovin_07-12-20_21-20-36.mp4
+>> Location: ./jojofied/jojofied_Big 3 Groovin_07-12-20_21-20-36.mp4
+>> Video Length: 17.03933333333333
+>> Time Taken: 4.89992880821228
+
+08-12-20_12-47-43
+>> File: Beef Stew - Hardstop Lucas_08-12-20_12-47-43.mp4
+>> Location: ./jojofied/jojofied_Beef Stew - Hardstop Lucas_08-12-20_12-47-43.mp4
+>> Video Length: 31.345999999999997
+>> Time Taken: 16.22674870491028
