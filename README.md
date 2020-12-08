@@ -1,5 +1,5 @@
 # JoJoTBCfier
-JoJo To Be Continued meme creator
+> JoJo To Be Continued meme creator
 
 * Run v2.3
 * Select a file and click the _**JoJoTBCfy!**_ button
