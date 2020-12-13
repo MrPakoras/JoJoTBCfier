@@ -185,3 +185,27 @@ Mon 07/12/20 09:31:35 AM
 >> Location: ./jojofied/jojofied_Beef Stew - Hardstop Lucas_08-12-20_12-47-43.mp4
 >> Video Length: 31.345999999999997
 >> Time Taken: 16.22674870491028
+
+12-12-20_17-41-08
+>> File: Beef Stew - Hardstop Lucas_12-12-20_17-41-08.mp4
+>> Location: ./jojofied/jojofied_Beef Stew - Hardstop Lucas_12-12-20_17-41-08.mp4
+>> Video Length: 31.345999999999997
+>> Time Taken: 18.57234477996826
+
+13-12-20_01-13-49
+>> File: IMG_9170_Trim_13-12-20_01-13-49.mp4
+>> Location: ./jojofied/jojofied_IMG_9170_Trim_13-12-20_01-13-49.mp4
+>> Video Length: 49.75599999999999
+>> Time Taken: 76.9700038433075
+
+13-12-20_12-34-56
+>> File: DASH_360_Trim_13-12-20_12-34-56.mp4
+>> Location: ./jojofied/jojofied_DASH_360_Trim_13-12-20_12-34-56.mp4
+>> Video Length: 18.156
+>> Time Taken: 2.239806890487671
+
+13-12-20_12-35-39
+>> File: DASH_360_13-12-20_12-35-39.mp4
+>> Location: ./jojofied/jojofied_DASH_360_13-12-20_12-35-39.mp4
+>> Video Length: 18.855999999999998
+>> Time Taken: 2.2937116622924805
