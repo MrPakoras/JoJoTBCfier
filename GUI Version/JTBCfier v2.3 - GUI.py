@@ -2,7 +2,7 @@
 
 from tkinter import *
 from tkinter import filedialog
-import moviepy, os, time, re, mimetypes
+import moviepy, os, time, re, mimetypes, threading
 import moviepy.editor as mp
 import moviepy.video.fx.all as vfx
 from PIL import Image, ImageOps
