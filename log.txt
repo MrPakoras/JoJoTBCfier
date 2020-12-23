@@ -221,3 +221,9 @@ Mon 07/12/20 09:31:35 AM
 >> Location: ./jojofied/jojofied_Big 3 Groovin_22-12-20_00-43-47.mp4
 >> Video Length: 17.005999999999997
 >> Time Taken: 5.995455741882324
+
+23-12-20_02-27-34
+>> File: Cilvanis One Piece Eyecatcher_23-12-20_02-27-34.mp4
+>> Location: ./jojofied/jojofied_Cilvanis One Piece Eyecatcher_23-12-20_02-27-34.mp4
+>> Video Length: 18.715999999999998
+>> Time Taken: 12.176547765731812
