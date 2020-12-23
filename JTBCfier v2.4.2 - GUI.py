@@ -136,6 +136,11 @@ def start():
 	v.close()
 	audioclip.close()
 
+	if len({fpath}) >= 25:
+		mvar = f'Done. Video output at {fpath[:25]}...'
+	else:
+		mvar = f'Done. Video output at {fpath}'
+	messvar.set(mvar)
 
 	# # ~ Log File ~ 	
 	# mvar = 'Writing log file...'
@@ -145,12 +150,6 @@ def start():
 	# lf = open('log.txt','a+')
 	# lf.write(f'\n\n{dt}\n>> File: {file}\n>> Location: {fpath}\n>> Video Length: {fva.duration}\n>> Time Taken: {time.time()-start_time}')
 	# lf.close()
-
-	# if len({fpath}) >= 45:
-	# 	mvar = f'Done. Video output at {fpath[:35]}...'
-	# else:
-	# 	mvar = f'Done. Video output at {fpath}'
-	# messvar.set(mvar)
 
 
 	# ~ Resetting GUI ~
