@@ -1,6 +1,7 @@
 # v2.4 - Added multi threading
 # v2.4.1 - Small patch closing Video and Audio FileClips at the end
-# V2.4.2 - Patch removing log file, not very useful tbh
+# v2.4.2 - Patch removing log file, not very useful tbh
+# v2.4.3 - Patch updating message bar
 
 from tkinter import *
 from tkinter import filedialog
@@ -15,7 +16,7 @@ print('>> Running...')
 
 master = Tk()
 master.iconbitmap('tbcarrowicon.ico')
-master.title('JoJoTBCfier v2.4.1 GUI')
+master.title('JoJoTBCfier v2.4.3 GUI')
 master.geometry('400x225')
 master.resizable(False, False)
 bkg = PhotoImage(file='bkg.png')
@@ -136,8 +137,8 @@ def start():
 	v.close()
 	audioclip.close()
 
-	if len({fpath}) >= 25:
-		mvar = f'Done. Video output at {fpath[:25]}...'
+	if len(fpath) > 40:
+		mvar = f'Done. Video output at {fpath[:40]}...'
 	else:
 		mvar = f'Done. Video output at {fpath}'
 	messvar.set(mvar)
