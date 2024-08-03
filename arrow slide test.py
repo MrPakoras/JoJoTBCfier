@@ -12,18 +12,26 @@ v = mp.VideoFileClip('test.mp4')
 arrow = Image.open('tbcarrow.png').convert('RGBA')
 arrow_size = int(math.floor(v.w*0.4)), int(math.floor(v.h*0.4))
 arrow = arrow.resize(arrow_size)
+# print(arrow_size)
 
 
 arrow_frame = Image.new('RGBA', (v.w, v.h), (0,0,0,0)) # Blank image with dimensions of video
-# arrow_frame.save('./newarrow.png', 'PNG')
+arrow_frame.save('./newarrow.png', 'PNG')
 
-arrow_posx, arrow_posy = int(math.floor(v.w*0.1)), int(math.floor(v.h*0.9)) # Pastes arrow 10% across x axis, and 90% down y axis of video
-area = (0, 0, arrow_size[0], arrow_size[1])
+arrow_posx, arrow_posy = int(math.floor(v.w*0.1)), int(math.floor(v.h*0.5)) # Pastes arrow 10% across x axis, and 90% down y axis of video
+area = (arrow_posx, arrow_posy, arrow_size[0]+arrow_posx, arrow_size[1]+arrow_posy)
+
+print(area)
+print(arrow_frame.size)
+
+
 arrow_frame = arrow_frame.paste(arrow, area)
 # Image.Image.paste(arrow_frame, arrow, arrow_pos)
 arrow_frame.save('./arrow_frame.png', 'PNG')
 
 arrow_frame = mp.ImageClip('arrow_frame.png')
+
+
 
 
 slide = mp.CompositeVideoClip([arrow_frame.fx(mp.transfx.slide_in, 1, 'right').set_duration(v.duration)]) # Slides in from set position (width of image)
