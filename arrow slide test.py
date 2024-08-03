@@ -15,21 +15,23 @@ arrow = arrow.resize(arrow_size)
 # print(arrow_size)
 
 
-arrow_frame = Image.new('RGBA', (v.w, v.h), (0,0,0,0)) # Blank image with dimensions of video
+arrow_frame = Image.new('RGBA', (v.w, v.h), (255,255,255,255)) # Blank image with dimensions of video
 arrow_frame.save('./newarrow.png', 'PNG')
 
-arrow_posx, arrow_posy = int(math.floor(v.w*0.1)), int(math.floor(v.h*0.5)) # Pastes arrow 10% across x axis, and 90% down y axis of video
-area = (arrow_posx, arrow_posy, arrow_size[0]+arrow_posx, arrow_size[1]+arrow_posy)
+arrow_posx, arrow_posy = int(math.floor(v.w*0.1)), int(math.floor(v.h*0.5)) # Pastes arrow 10% across x axis, and 50% down y axis of video
+# area = (arrow_posx, arrow_posy, arrow_size[0]+arrow_posx, arrow_size[1]+arrow_posy)
+area = (0, 0, v.w, v.h)
 
 print(area)
 print(arrow_frame.size)
 
 
-arrow_frame = arrow_frame.paste(arrow, area)
-# Image.Image.paste(arrow_frame, arrow, arrow_pos)
+# arrow_frame = arrow_frame.paste(arrow, area)
+arrow_frame = arrow_frame.paste(arrow, (arrow_posx, arrow_posy))
+
 arrow_frame.save('./arrow_frame.png', 'PNG')
 
-arrow_frame = mp.ImageClip('arrow_frame.png')
+arrow_frame = mp.ImageClip('./newarrow.png')
 
 
 
