@@ -77,7 +77,8 @@ logger = MyBarLogger()
 ## Start program button
 def start():
 	openfile_button.configure(state='disabled')
-	mute_button.configure(state='disabled')
+	mute_check.configure(state='disabled')
+	owd_check.configure(state='disabled')
 	open_button.configure(state='disabled')
 	message('JoJoTBCfying in progress. Please wait...')
 	
@@ -147,10 +148,11 @@ def start():
 
 	##  ~ Arrow slide animation ~
 	arrow = Image.open('./assets/tbcarrow.png')
-	arrow_ratio = arrow.size[0]/arrow.size[1] # Aspect ratio of arrow 
+	arrow_ratio = arrow.size[0]/arrow.size[1] # Aspect ratio of arrow
 
-	arrow_sizex = int(round(v.w*0.4)) # Arrow width to 40% of video width
-	arrow_sizey = int(round((v.h*0.4)/arrow_ratio)) # Scale arrow height to preserve aspect ratio
+	base = min(v.size) # set base size to whichever is smaller between the width and height of video, so arrow scaling isnt weird
+	arrow_sizex = int(round(base*0.4)) # Arrow width to 40% of video width
+	arrow_sizey = int(round((base*0.4)/arrow_ratio)) # Scale arrow height to preserve aspect ratio
 	arrow = arrow.resize((arrow_sizex, arrow_sizey))
 
 	arrow_posx, arrow_posy = int(round(v.w*0.1)), int(round(v.h*0.7)) # Pastes arrow 10% across x axis, and 50% down y axis of video
@@ -200,12 +202,17 @@ def start():
 
 	print(os.path.realpath(fpath))
 	
+	# Open video if Open When Done checkbox is active
+	if owd_var.get() == 1:
+		openvideo()
+	
 
 
 	# ~ Resetting GUI ~
 	#run_button.configure(state='disabled')
 	openfile_button.configure(state='normal')
-	mute_button.configure(state='normal')
+	mute_check.configure(state='normal')
+	owd_check.configure(state='normal')
 	open_button.configure(state='normal')
 
 
@@ -258,6 +265,7 @@ file_label.grid(row=0,column=0,padx=10)
 openfile_button = CTkButton(file_frame, text='Open File', command=browse, fg_color=colourmain, hover_color=colourdark, text_color='black')
 openfile_button.grid(row=0,column=1)
 
+
 ## Options
 options_frame = CTkFrame(rightframe)
 options_frame.grid(row=rows.index('options'), column=0)
@@ -265,14 +273,19 @@ options_frame.grid(row=rows.index('options'), column=0)
 # Mute audio check button
 mute = IntVar()
 mute.set(0)
-mute_button = CTkCheckBox(options_frame, text='Mute original audio', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
-mute_button.grid(row=0, column=0)
-mute_button.configure(state='normal')
+mute_check = CTkCheckBox(options_frame, text='Mute original audio', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
+mute_check.grid(row=0, column=0)
+mute_check.configure(state='normal')
 
 # Open when done
-owd_check = CTkCheckBox(options_frame, text='Open when done', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
+owd_var = IntVar()
+owd_var.set(1)
+
+owd_check = CTkCheckBox(options_frame, text='Open when done', variable=owd_var, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
 owd_check.grid(row=0, column=1, padx=10)
 owd_check.configure(state='normal')
+owd_check.select() # Toggle on
+
 
 ## Messages
 message_frame = CTkFrame(rightframe, width=300, height=400)
@@ -281,6 +294,7 @@ message_frame.pack_propagate(0)
 
 message_label = CTkTextbox(message_frame, text_color='#fff', width=400, height=350)
 message_label.grid(row=0, column=0)
+
 
 ## Progress bar
 global progvar
