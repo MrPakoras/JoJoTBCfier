@@ -1,9 +1,3 @@
-# v2.4 - Added multi threading
-# v2.4.1 - Small patch closing Video and Audio FileClips at the end
-# v2.4.2 - Patch removing log file, not very useful tbh
-# v2.4.3 - Patch updating message bar
-# Change to CustomTkinter
-
 from tkinter import *
 from tkinter import filedialog
 import moviepy, os, time, re, mimetypes, threading
@@ -124,7 +118,7 @@ def start():
 		except AttributeError:
 		    fa = mp.CompositeAudioClip([audioclip]) # Else just add audio
 	elif mute.get() == 1: # If mute button checked
-		message('>> Muting original audio')
+		message('Muting original audio')
 		fa = mp.CompositeAudioClip([audioclip])
 
 
@@ -145,18 +139,44 @@ def start():
 	message('Adding To Be Continued arrow...')
 	
 
-	tbcarrow = mp.ImageClip('./assets/tbcarrow.png')
+	# tbcarrow = mp.ImageClip('./assets/tbcarrow.png')
 	vidwid, vidhei = v.w, v.h
-	message('>> WidthxHeight = '+str(vidwid)+'x'+str(vidhei))
+	message('WidthxHeight = '+str(vidwid)+'x'+str(vidhei))
 
-	tbcarrow = tbcarrow.resize(width=(vidwid*0.4)) # Resizing arrow to 40% of video width
+	# tbcarrow = tbcarrow.resize(width=(vidwid*0.4)) # Resizing arrow to 40% of video width
+
+	##  ~ Arrow slide animation ~
+	arrow = Image.open('./assets/tbcarrow.png')
+	arrow_ratio = arrow.size[0]/arrow.size[1] # Aspect ratio of arrow 
+
+	arrow_sizex = int(round(v.w*0.4)) # Arrow width to 40% of video width
+	arrow_sizey = int(round((v.h*0.4)/arrow_ratio)) # Scale arrow height to preserve aspect ratio
+	arrow = arrow.resize((arrow_sizex, arrow_sizey))
+
+	arrow_posx, arrow_posy = int(round(v.w*0.1)), int(round(v.h*0.7)) # Pastes arrow 10% across x axis, and 50% down y axis of video
+
+	# Arrow Frame (transparent layer)
+	arrow_frame = Image.new('RGBA', (v.w, v.h), (0,0,0,0)) # Blank image with dimensions of video
+
+	#https://stackoverflow.com/questions/5324647/how-to-merge-a-transparent-png-image-with-another-image-using-pil
+	arrow_frame.paste(arrow, (arrow_posx, arrow_posy), arrow) # need to specify arrow as mask (after position tuple), so that it removes the alpha part and only pastes the visible part of image
+
+	###########################################################################################################################
+	### Thank you @briskettaco (aka BillyBobby) from the Python Discord for helping me out with the .paste() function :D <3 ###
+	###########################################################################################################################
+
+	arrow_frame.save('./assets/arrow_frame.png', 'PNG')
+	arrow_frame = mp.ImageClip('./assets/arrow_frame.png')
+
+	slide = mp.CompositeVideoClip([arrow_frame.fx(mp.transfx.slide_in, 0.3, 'right').set_duration(audioclip.duration-riff_time)]) # Slides in from set position (width of image)
 
 
 	#  ~ Exporting video ~
 	message('Creating video...')
 	
 
-	fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+	# fv = mp.CompositeVideoClip([v, finalfr, tbcarrow.set_pos(('left','bottom')).set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
+	fv = mp.CompositeVideoClip([v, finalfr, slide.set_start(final).set_duration(audioclip.duration-riff_time)]) #add tbc arrow
 	fva = fv.set_audio(fa).set_end(fv.duration-0.1)
 	fva = fva.set_fps(fps=30)
 
@@ -219,7 +239,7 @@ setb.place(x=0, y=0, relwidth=1, relheight=1)
 rightframe = CTkFrame(mainframe, height=600) # Right side - for GUI elements
 rightframe.grid(row=0, column=1)
 
-rows = ['title', 'fileselect', 'mute', 'message', 'progbar', 'start']
+rows = ['title', 'fileselect', 'options', 'message', 'progbar', 'start']
 
 
 ## Title
@@ -238,21 +258,21 @@ file_label.grid(row=0,column=0,padx=10)
 openfile_button = CTkButton(file_frame, text='Open File', command=browse, fg_color=colourmain, hover_color=colourdark, text_color='black')
 openfile_button.grid(row=0,column=1)
 
+## Options
+options_frame = CTkFrame(rightframe)
+options_frame.grid(row=rows.index('options'), column=0)
 
-## Mute audio check button
+# Mute audio check button
 mute = IntVar()
 mute.set(0)
-mute_button = CTkCheckBox(rightframe, text='Mute original audio', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
-mute_button.grid(row=rows.index('mute'), column=0)
+mute_button = CTkCheckBox(options_frame, text='Mute original audio', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
+mute_button.grid(row=0, column=0)
 mute_button.configure(state='normal')
 
-# ## JoJoTBCfy
-# run_button = CTkButton(master, text='JoJoTBCfy!', command=lambda:threading.Thread(target=start).start(), width=20, height=2, fg_color='#1d1c2c', text_color='#8d73ff')
-# # master.rowconfigure(3, weight=1)
-# # master.rowconfigure(4, pad=10)
-# run_button.grid(row=4, column=0)
-# run_button.configure(state='disabled')
-
+# Open when done
+owd_check = CTkCheckBox(options_frame, text='Open when done', variable=mute, fg_color=colourdark, text_color=colourmain, hover_color=colourmain)
+owd_check.grid(row=0, column=1, padx=10)
+owd_check.configure(state='normal')
 
 ## Messages
 message_frame = CTkFrame(rightframe, width=300, height=400)
