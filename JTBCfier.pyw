@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-import moviepy, os, time, re, mimetypes, threading
+import moviepy, os, time, re, mimetypes, threading, pyglet
 import moviepy.editor as mp
 import moviepy.video.fx.all as vfx
 from PIL import Image, ImageOps
@@ -9,15 +9,35 @@ from moviepy.editor import ImageClip
 from customtkinter import *
 from customtkinter import filedialog
 from proglog import ProgressBarLogger
+from tkinterdnd2 import DND_FILES, TkinterDnD
+from tkextrafont import Font
 
 print('>> Running...')
+
+## Importing font
+appdatalocal = os.getenv('LOCALAPPDATA')
+pyglet.options['win32_gdi_font'] = True
+pyglet.font.add_file(f'{appdatalocal}/Microsoft/Windows/Fonts/Bangers-Regular_0.ttf')
+bangers_font = ('Bangers',50)
+
+
+
+## Default output directory
+try:
+	os.mkdir('./jojofied')
+except FileExistsError:
+	pass
+
+outputdir = os.path.realpath('./jojofied')
+
 
 ## Message box update and create new line
 def message(text):
 	message_label.insert(END, f'>> {text}\n')
 	print(f'>> {text}')
 
-# Please wait...
+
+## Please wait...
 n = 1
 def waiting():
 	global n
@@ -31,32 +51,36 @@ def waiting():
 		print(e[0])
 	n += 1
 
+
 ## Browse for file function
-def browse():
-	global filename
-	filename = filedialog.askopenfilename(initialdir = "./", title = "Select a File")
+def browse(type):
+	global filename, outputdir
+	if type == 'file':
+		filename = filedialog.askopenfilename(initialdir = "./", title = "Select a File")
 
-	if len(filename) != 0:
-		if len(filename) >= 45:
-			avar = filename[:45]+'...'
-		else:
-			avar = filename
-		file_label.configure(text=avar)
+		if len(filename) != 0:
+			if len(filename) >= 45:
+				avar = filename[:45]+'...'
+			else:
+				avar = filename
+			file_label.configure(text=avar)
 
-		if mimetypes.guess_type(filename)[0].startswith('video'):
-			message(':)')
-			
-			run_button.configure(state='normal')
+			if mimetypes.guess_type(filename)[0].startswith('video'):
+				message(f'{filename} loaded.')
+				
+				run_button.configure(state='normal')
 
-		else:
-			run_button.configure(state='disabled')
-			message('Error. Please choose a video file.')
-			
+			else:
+				run_button.configure(state='disabled')
+				message('Error. Please choose a video file.')
+
+	if type == 'folder':
+			outputdir = filedialog.askdirectory(initialdir = "./", title = "Select Folder")
+			folder_label.configure(text=f'Output: {outputdir[:45]}')
 
 
 ## Progress Bar - https://stackoverflow.com/questions/69423410/moviepy-getting-progress-bar-values
 class MyBarLogger(ProgressBarLogger):
-
 	def callback(self, **changes):
 		pass
 		# Every time the logger message is updated, this function is called with
@@ -77,11 +101,11 @@ logger = MyBarLogger()
 ## Start program button
 def start():
 	openfile_button.configure(state='disabled')
+	openfolder_button.configure(state='disabled')
 	mute_check.configure(state='disabled')
 	owd_check.configure(state='disabled')
 	open_button.configure(state='disabled')
 	message('JoJoTBCfying in progress. Please wait...')
-	
 
 	## JoJoTBCfier code:
 	global file
@@ -155,7 +179,7 @@ def start():
 	arrow_sizey = int(round((base*0.4)/arrow_ratio)) # Scale arrow height to preserve aspect ratio
 	arrow = arrow.resize((arrow_sizex, arrow_sizey))
 
-	arrow_posx, arrow_posy = int(round(v.w*0.1)), int(round(v.h*0.7)) # Pastes arrow 10% across x axis, and 50% down y axis of video
+	arrow_posx, arrow_posy = int(round(v.w*0.05)), int(round(v.h*0.7)) # Pastes arrow 5% across x axis, and 50% down y axis of video
 
 	# Arrow Frame (transparent layer)
 	arrow_frame = Image.new('RGBA', (v.w, v.h), (0,0,0,0)) # Blank image with dimensions of video
@@ -187,7 +211,7 @@ def start():
 
 	global fpath
 	file = f'{file[0:extindex]}_{dt}.mp4' # replacing extension with .mp4
-	fpath = os.path.realpath(f'./jojofied/jojofied_{file}')
+	fpath = os.path.realpath(f'{outputdir}/jojofied_{file}')
 
 	message('Exporting video...')
 	fva.write_videofile(fpath, logger=logger)
@@ -211,6 +235,7 @@ def start():
 	# ~ Resetting GUI ~
 	#run_button.configure(state='disabled')
 	openfile_button.configure(state='normal')
+	openfolder_button.configure(state='disabled')
 	mute_check.configure(state='normal')
 	owd_check.configure(state='normal')
 	open_button.configure(state='normal')
@@ -221,14 +246,36 @@ def openvideo():
 	os.startfile(fpath)
 
 
-### GUI ###
+
+
+
+
+
+
+
+
+
+
+###############
+### ~ GUI ~ ###
+###############
+
+
+
+
+
+
+
+
+def test(widgets):
+	[x.configure(fg_color='#fff') for x in widgets]
 
 colourmain = '#e23f9f'
 colourdark = '#901d61'
 
 master = CTk()
 master.iconbitmap('./assets/tbcarrowicon.ico')
-master.title('JoJoTBCfier v2.4.3 GUI')
+master.title('JoJoTBCfier')
 master.geometry('800x600')
 master.resizable(False, False)
 
@@ -249,9 +296,15 @@ rightframe.grid(row=0, column=1)
 rows = ['title', 'fileselect', 'options', 'message', 'progbar', 'start']
 
 
+## Font
+# FontManager.load_font(f'{appdatalocal}/Bangers-Regular_0.ttf')
+# bangers_font = CTkFont(family=f'{appdatalocal}/Bangers-Regular_0.ttf', size=30)
+# bangers_font = Font(file='./assets/Bangers-Regular_0.ttf')
+
 ## Title
-title_label = CTkLabel(rightframe, text='JoJo TBC Meme Creator', font=('Calibri', 30), text_color=colourmain)
+title_label = CTkLabel(rightframe, text='★ JoJo TBC Meme Maker ★', font=bangers_font, text_color=colourmain, fg_color='transparent')
 title_label.grid(row=rows.index('title'), column=0)
+
 
 
 ## File select
@@ -262,8 +315,15 @@ file_frame.pack_propagate(0)
 file_label = CTkLabel(file_frame, text='Choose video file', width=300, anchor='w', wraplength=0)
 file_label.grid(row=0,column=0,padx=10)
 
-openfile_button = CTkButton(file_frame, text='Open File', command=browse, fg_color=colourmain, hover_color=colourdark, text_color='black')
+openfile_button = CTkButton(file_frame, text='Open File', command=lambda: browse('file'), fg_color=colourmain, hover_color=colourdark, text_color='black')
 openfile_button.grid(row=0,column=1)
+
+folder_label = CTkLabel(file_frame, text='', width=300, anchor='w', wraplength=0)
+folder_label.grid(row=1,column=0,padx=10, pady=(10,0))
+
+openfolder_button = CTkButton(file_frame, text='Set Output Dir', command=lambda: browse('folder'), fg_color=colourmain, hover_color=colourdark, text_color='black')
+openfolder_button.grid(row=1,column=1, pady=(10,0))
+folder_label.configure(text=f'Output: {outputdir[:45]}')
 
 
 ## Options
@@ -290,10 +350,10 @@ owd_check.select() # Toggle on
 ## Messages
 message_frame = CTkFrame(rightframe, width=300, height=400)
 message_frame.grid(row=rows.index('message'),column=0, padx=10, pady=10)
-message_frame.pack_propagate(0)
 
-message_label = CTkTextbox(message_frame, text_color='#fff', width=400, height=350)
+message_label = CTkTextbox(message_frame, text_color='#fff', width=400, height=250)
 message_label.grid(row=0, column=0)
+message_label.configure(state='disabled')
 
 
 ## Progress bar
@@ -316,5 +376,6 @@ open_button.grid(row=0,column=1, padx=10)
 open_button.configure(state='disabled')
 
 
+# test([title_label, file_frame, options_frame, message_frame, progbar, run_frame])
 
 master.mainloop()
